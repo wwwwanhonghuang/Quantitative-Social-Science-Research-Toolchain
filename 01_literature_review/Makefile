@@ -19,7 +19,7 @@ export CURRENT_DATE
 all: project pdf
 
 # Create project from templates
-project: $(PROJECT_DIR)/main.tex $(PROJECT_DIR)/references.bib $(PROJECT_DIR)/sections/abstract.tex $(PROJECT_DIR)/sections/introduction.tex $(PROJECT_DIR)/sections/methodology.tex $(PROJECT_DIR)/sections/results.tex $(PROJECT_DIR)/sections/conclusion.tex $(PROJECT_DIR)/sections/discussion.tex $(PROJECT_DIR)/sections/appendix.tex $(PROJECT_DIR)/Makefile $(PROJECT_DIR)/README.md
+project: $(PROJECT_DIR)/main.tex $(PROJECT_DIR)/references.bib $(PROJECT_DIR)/sections/abstract.tex $(PROJECT_DIR)/sections/introduction.tex $(PROJECT_DIR)/sections/methodology.tex $(PROJECT_DIR)/sections/results.tex $(PROJECT_DIR)/sections/conclusion.tex $(PROJECT_DIR)/sections/discussion.tex $(PROJECT_DIR)/sections/appendix.tex $(PROJECT_DIR)/Makefile $(PROJECT_DIR)/README.md $(PROJECT_DIR)/summary.md
 	@echo "✓ Literature review project created: $(PROJECT_DIR)"
 
 # Create project directory structure
@@ -38,6 +38,11 @@ $(PROJECT_DIR)/main.tex: $(TEMPLATE_DIR)/main.tex.in $(PROJECT_DIR)/.dir
 $(PROJECT_DIR)/references.bib: $(TEMPLATE_DIR)/references.bib.in $(PROJECT_DIR)/.dir
 	@envsubst '$$LITERATURE_TITLE $$AUTHOR $$NORMALIZED_TITLE $$CURRENT_DATE' < $< > $@
 	@echo "✓ Generated: $@"
+
+# Generate empty summary.md
+$(PROJECT_DIR)/summary.md: $(PROJECT_DIR)/.dir
+	@touch $@
+	@echo "✓ Created empty summary: $@"
 
 # Generate section files from individual templates
 $(PROJECT_DIR)/sections/abstract.tex: $(PARTIALS_DIR)/abstract.tex.in $(PROJECT_DIR)/.dir
@@ -149,8 +154,44 @@ help:
 	@echo "  make list"
 	@echo "  make clean LITERATURE_TITLE='Your Title'"
 	@echo "  make remove LITERATURE_TITLE='Your Title'"
+	@echo "  make integrate_summary"
+	@echo "  make summary-status"
 	@echo ""
 	@echo "Examples:"
 	@echo "  make project LITERATURE_TITLE='Machine Learning Survey 2024'"
 	@echo "  make project LITERATURE_TITLE='Deep Learning in Healthcare' AUTHOR='John Doe \\\\ University of Research'"
 	@echo "  make pdf LITERATURE_TITLE='machine_learning_survey_2024'"
+
+
+# Integrate all project summaries
+integrate_summary:
+	@echo "Integrating all project summaries..."
+	@echo "# Integrated Research Summary - $(shell date +'%Y-%m-%d %H:%M')" > integrated_summary.md
+	@echo "" >> integrated_summary.md
+	@for project_path in reviews/*; do \
+		if [ -f "$$project_path/summary.md" ]; then \
+			echo "## Project: $$(basename $$project_path)" >> integrated_summary.md; \
+			echo "" >> integrated_summary.md; \
+			cat "$$project_path/summary.md" >> integrated_summary.md; \
+			echo "" >> integrated_summary.md; \
+			echo "---" >> integrated_summary.md; \
+			echo "" >> integrated_summary.md; \
+		fi; \
+	done
+	@echo "✓ Integrated summary created: integrated_summary.md"
+
+# Show summary status
+summary-status:
+	@echo "Project Summary Status:"
+	@for project_path in reviews/*; do \
+		if [ -f "$$project_path/summary.md" ]; then \
+			lines=$$(wc -l < "$$project_path/summary.md"); \
+			if [ $$lines -eq 0 ]; then \
+				echo "  $$(basename $$project_path): ⚪ Empty"; \
+			else \
+				echo "  $$(basename $$project_path): ✅ Has content ($$lines lines)"; \
+			fi; \
+		else \
+			echo "  $$(basename $$project_path): ❌ No summary.md"; \
+		fi; \
+	done
