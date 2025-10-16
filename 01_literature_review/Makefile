@@ -8,6 +8,7 @@ PROJECT_DIR := reviews/$(NORMALIZED_TITLE)
 TEMPLATE_DIR := templates
 CURRENT_DATE := $(shell date +'%Y-%m-%d')
 PARTIALS_DIR := $(TEMPLATE_DIR)/partials
+SUMMARIZER_PATH := $(realpath ../llm/scripts/app/summarize.py)
 
 export LITERATURE_TITLE
 export AUTHOR
@@ -162,6 +163,24 @@ help:
 	@echo "  make project LITERATURE_TITLE='Deep Learning in Healthcare' AUTHOR='John Doe \\\\ University of Research'"
 	@echo "  make pdf LITERATURE_TITLE='machine_learning_survey_2024'"
 
+_summary-by-llm:
+	@echo "Summarizing input file $(INPUT) use $(SUMMARIZER_PATH)..."
+	@cd ../llm && python $(SUMMARIZER_PATH) $(INPUT) $(OUTPUT)
+	@echo "✓ Done summarizing $(INPUT) -> $(OUTPUT)"
+
+# Expand and summarize a single project
+summarize-project-by-llm:
+	@echo "Expanding LaTeX sections for $(PROJECT)..."
+	@python scripts/expand_tex.py $(PROJECT)/main.tex $(PROJECT)/main_expanded.txt
+	@echo "✓ Done expanding sections."
+	@$(MAKE) _summary-by-llm INPUT=$(PROJECT)/main_expanded.txt OUTPUT=$(PROJECT)/llm_summary.txt
+	@echo "✓ Summary saved to $(PROJECT)/llm_summary.txt"
+
+# Expand and summarize all projects listed in PROJECTS
+summarize-all-projects-by-llm:
+	@for proj in ./reviews; do \
+		$(MAKE) summarize-project-by-llm PROJECT=$$proj; \
+	done
 
 # Integrate all project summaries
 integrate_summary:
