@@ -1,0 +1,27 @@
+# Project-specific Makefile for: ${LITERATURE_TITLE}
+
+.PHONY: pdf quickpdf watch clean
+
+pdf: main.tex references.bib
+	pdflatex main.tex
+	bibtex main.aux
+	pdflatex main.tex
+	pdflatex main.tex
+	@echo "✓ PDF compiled: main.pdf"
+
+quickpdf:
+	pdflatex main.tex
+	@echo "✓ Quick PDF update: main.pdf"
+
+watch:
+	@echo "Watching for changes... (Ctrl+C to stop)"
+	@while true; do \
+		inotifywait -q -e modify *.tex sections/*.tex references.bib; \
+		echo "Change detected, recompiling..."; \
+		make quickpdf; \
+	done
+
+clean:
+	rm -f *.aux *.log *.out *.toc *.lof *.lot
+	rm -f *.bbl *.blg *.nav *.snm *.vrb
+	@echo "✓ Build files cleaned"

@@ -1,0 +1,57 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{mathpazo}
+\usepackage{setspace}
+\usepackage[margin=1in]{geometry}
+\usepackage[style=apa, backend=biber]{biblatex}
+\usepackage{csquotes}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{parskip}
+\usepackage{titlesec}
+
+\addbibresource{references.bib}
+
+% Title formatting
+\title{\textbf{${LITERATURE_TITLE}}}
+\author{${AUTHOR}}
+\date{\today}
+
+% Section formatting  
+\titleformat{\section}{\large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\bfseries}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}{\itshape}{\thesubsubsection}{1em}{}
+
+% Line spacing
+\onehalfspacing
+
+\begin{document}
+
+\maketitle
+
+\input{sections/abstract}
+
+% Keywords section
+\vspace{0.5cm}
+\noindent\textbf{Keywords:} [add 3-5 relevant keywords]
+\vspace{1cm}
+
+\tableofcontents
+\newpage
+
+\input{sections/introduction}
+\input{sections/methodology}
+\input{sections/results}
+\input{sections/discussion}
+\input{sections/conclusion}
+
+
+\newpage
+\printbibliography
+
+\appendix
+\input{sections/appendix}
+
+\end{document}

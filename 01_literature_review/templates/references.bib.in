@@ -1,0 +1,13 @@
+% References for: ${LITERATURE_TITLE}
+% Generated on: ${CURRENT_DATE}
+
+@article{example2024,
+  title = {Example Article Title},
+  author = {Author, A. and Coauthor, B.},
+  journal = {Journal of Examples},
+  year = {2024},
+  volume = {1},
+  pages = {1--10}
+}
+
+% Add your references below this line

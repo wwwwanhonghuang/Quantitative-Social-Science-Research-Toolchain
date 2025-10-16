@@ -1,0 +1,20 @@
+# ${LITERATURE_TITLE}
+
+**Project Directory:** ${NORMALIZED_TITLE}  
+**Created:** ${CURRENT_DATE}
+
+## Project Structure
+
+- `main.tex` - Main LaTeX document
+- `references.bib` - Bibliography file
+- `sections/` - Individual LaTeX sections
+- `figures/` - Store images and diagrams
+- `tables/` - Data tables
+
+## Build Commands
+
+```bash
+make pdf        # Full compilation
+make quickpdf   # Fast compilation (no bibliography)
+make watch      # Watch for changes and auto-compile
+make clean      # Clean build artifacts
