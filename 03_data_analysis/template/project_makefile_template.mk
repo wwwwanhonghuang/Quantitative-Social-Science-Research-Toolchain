@@ -8,13 +8,14 @@ RESULTS_DIR := results
 TABLES_DIR := ${RESULTS_DIR}/tables
 FIGURES_DIR := ${RESULTS_DIR}/figures
 MODELS_DIR := ${RESULTS_DIR}/models
-
+PREPROCESSING_SCRIPT := ${PREPROCESSING_SCRIPT}
 .PHONY: all preprocess statistics causal figures clean
 
 all: preprocess statistics causal figures
 
 preprocess:
 	@echo 'Run preprocessing for project ${PROJECT_NAME}'
+	python $(PREPROCESSING_SCRIPT) --project_path projects/$(PROJECT)
 
 statistics:
 	@echo 'Run statistics for project ${PROJECT_NAME}'

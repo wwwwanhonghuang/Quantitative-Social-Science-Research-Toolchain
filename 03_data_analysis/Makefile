@@ -12,6 +12,7 @@ new-project:
 
 	# Create project folders
 	@mkdir -p projects/$(PROJECT_NAME)/data/raw
+	@mkdir -p projects/$(PROJECT_NAME)/data/config
 	@mkdir -p projects/$(PROJECT_NAME)/data/processed
 	@mkdir -p projects/$(PROJECT_NAME)/results/tables
 	@mkdir -p projects/$(PROJECT_NAME)/results/figures
@@ -24,6 +25,7 @@ new-project:
 	@echo "Creating Makefile for project $(NEW_PROJECT)..."
 	@export DATA_DIR=$(realpath projects/$(PROJECT_NAME)/data) && \
 	export RESULTS_DIR=$(realpath projects/$(PROJECT_NAME)/results) && \
+	export PREPROCESSING_SCRIPT=$(realpath ./proprocessing.py) && \
 	export PROJECT_NAME=$(PROJECT_NAME) && \
 	envsubst < $(TEMPLATE) > projects/$(PROJECT_NAME)/Makefile
 
