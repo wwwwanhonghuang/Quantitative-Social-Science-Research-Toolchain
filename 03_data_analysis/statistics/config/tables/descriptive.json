@@ -1,0 +1,8 @@
+{
+    "data_file": "descriptive_stats.json",
+    "strategy_name": "descriptive",
+    "output_file": "papers/main/descriptives.tex",
+    "caption": "Descriptive Statistics of Study Variables",
+    "label": "tab:descriptives",
+    "style": "academic"
+}

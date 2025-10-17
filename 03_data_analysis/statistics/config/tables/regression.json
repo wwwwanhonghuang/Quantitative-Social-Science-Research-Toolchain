@@ -1,0 +1,8 @@
+{
+    "data_file": "regression_results.json",
+    "strategy_name": "regression", 
+    "output_file": "papers/main/model_comparison.tex",
+    "caption": "Regression Model Performance Comparison",
+    "label": "tab:regression_models",
+    "style": "academic"
+}

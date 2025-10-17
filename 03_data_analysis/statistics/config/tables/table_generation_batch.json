@@ -1,0 +1,23 @@
+[
+    {
+        "data_file": "descriptive_stats.json",
+        "strategy_name": "descriptive",
+        "output_file": "tables/study_descriptives.tex",
+        "caption": "Descriptive Statistics of Study Variables",
+        "label": "tab:descriptives"
+    },
+    {
+        "data_file": "regression_results.json", 
+        "strategy_name": "regression",
+        "output_file": "tables/model_comparison.tex",
+        "caption": "Regression Model Performance Comparison",
+        "label": "tab:regression"
+    },
+    {
+        "data_file": "descriptive_stats.json",
+        "strategy_name": "descriptive",
+        "output_file": "tables/appendix_descriptives.tex",
+        "caption": "Appendix: Complete Variable Descriptives",
+        "style": "minimal"
+    }
+]
