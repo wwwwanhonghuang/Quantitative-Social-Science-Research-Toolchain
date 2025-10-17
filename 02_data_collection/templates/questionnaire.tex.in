@@ -1,0 +1,30 @@
+\documentclass[parskip=full]{scrlttr2}
+\usepackage{form}
+\usepackage{geometry}
+
+\begin{document}
+
+\begin{Form}
+\begin{center}
+\Large\textbf{${SURVEY_TITLE}}
+\end{center}
+
+\section*{Demographic Information}
+
+\textbf{Gender:}
+\ChoiceMenu[radio,name=gender]{}{Male,Female,Other,Prefer not to say}
+
+\textbf{Age:} \TextField[name=age,width=3cm,bordercolor=blue]{} years
+
+\section*{Social Attitudes}
+
+\textbf{How important are the following to you?}
+
+\begin{Description}
+\item[Family relationships] \ChoiceMenu[radio,name=family]{}{Not important,Somewhat important,Important,Very important}
+\item[Community involvement] \ChoiceMenu[radio,name=community]{}{Not important,Somewhat important,Important,Very important}
+\item[Political participation] \ChoiceMenu[radio,name=politics]{}{Not important,Somewhat important,Important,Very important}
+\end{Description}
+
+\end{Form}
+\end{document}
