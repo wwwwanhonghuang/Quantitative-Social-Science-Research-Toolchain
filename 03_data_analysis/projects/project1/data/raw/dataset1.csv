@@ -1,0 +1,6 @@
+id,age,gender,income,education,comments
+1,25,M,50000,Bachelor,"Good"
+2,30,F,60000,Master,"Excellent"
+3,,M,55000,Bachelor,"Average"
+4,40,F,,PhD,"Good"
+5,35,M,70000,Master

@@ -15,9 +15,11 @@ all: preprocess statistics causal figures
 
 preprocess:
 	@echo 'Run preprocessing for project project1'
+	python /mnt/c/Users/Micro/Desktop/work-li-xiao-yu-lab/03_data_analysis/preprocessing.py --project_path /mnt/c/Users/Micro/Desktop/work-li-xiao-yu-lab/03_data_analysis/projects/project1
 
 statistics:
 	@echo 'Run statistics for project project1'
+	python /mnt/c/Users/Micro/Desktop/work-li-xiao-yu-lab/03_data_analysis/statistics.py --project_path /mnt/c/Users/Micro/Desktop/work-li-xiao-yu-lab/03_data_analysis/projects/project1
 
 causal:
 	@echo 'Run causal inference for project project1'

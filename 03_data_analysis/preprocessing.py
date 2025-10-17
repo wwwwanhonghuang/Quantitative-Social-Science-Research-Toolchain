@@ -26,10 +26,11 @@ def handle_missing(df, schema):
 def encode_categorical(df, schema):
     for var, info in schema["variables"].items():
         if info["type"] == "nominal":
-            enc = OneHotEncoder(sparse=False, drop='first')
+            enc = OneHotEncoder(sparse_output=False, drop='first')
             encoded = enc.fit_transform(df[[var]])
+            
             cols = [f"{var}_{cat}" for cat in enc.categories_[0][1:]]
-            df = df.drop(columns=[var])
+            # df = df.drop(columns=[var])
             df[cols] = encoded
         elif info["type"] == "ordinal":
             order = info["order"]
@@ -62,11 +63,13 @@ def preprocess_project(project_path, select_datasets=None):
     os.makedirs(processed_dir, exist_ok=True)
 
     csv_files = glob.glob(os.path.join(raw_dir, "*.csv"))
+    print(f"Pending to process {csv_files}.")
     if not csv_files:
         print(f"No CSV files found in {raw_dir}")
         return
 
     for csv_file in csv_files:
+        print(f"Process {csv_file}.")
         dataset_name = os.path.splitext(os.path.basename(csv_file))[0]
 
         # Skip if not in select_datasets
@@ -111,10 +114,11 @@ def preprocess_project(project_path, select_datasets=None):
 # -----------------------------
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Preprocess all datasets in a project using per-dataset JSON configs.")
-    parser.add_argument("project_path", type=str, help="Path to the project folder")
+    parser.add_argument("--project_path", type=str, help="Path to the project folder")
     parser.add_argument("--select-dataset", type=str, default=None,
                         help="Comma-separated list of datasets to preprocess (without .csv extension)")
     args = parser.parse_args()
 
     select_datasets = args.select_dataset.split(",") if args.select_dataset else None
+    
     preprocess_project(args.project_path, select_datasets)

@@ -5,6 +5,5 @@
     "scale_numeric",
     "extract_text_features",
     "save_processed"
-  ],
-  "output_path": "data/processed/processed_data.csv"
+  ]
 }

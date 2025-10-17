@@ -1,0 +1,10 @@
+{
+  "variables": {
+    "id": {"type": "ratio", "missing": "drop"},
+    "age": {"type": "interval", "missing": "mean", "scaling": "standard"},
+    "gender": {"type": "nominal", "missing": "most_frequent"},
+    "income": {"type": "ratio", "missing": "mean", "scaling": "minmax"},
+    "education": {"type": "ordinal", "missing": "most_frequent", "order": ["Bachelor", "Master", "PhD"]},
+    "comments": {"type": "descriptive", "missing": "most_frequent"}
+  }
+}

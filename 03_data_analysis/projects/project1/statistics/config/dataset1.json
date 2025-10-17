@@ -1,0 +1,15 @@
+{
+  "statistics-plan1": {
+    "type": "descriptive",
+    "variables": ["age", "income", "education", "gender"],
+    "groupby": ["gender"],
+    "output_file": "descriptive_dataset1.csv"
+  },
+  "statistics-plan2": {
+    "type": "regression",
+    "dependent": "income",
+    "independents": ["age", "education", "gender"],
+    "model_type": "linear",
+    "output_file": "regression_dataset1.txt"
+  }
+}

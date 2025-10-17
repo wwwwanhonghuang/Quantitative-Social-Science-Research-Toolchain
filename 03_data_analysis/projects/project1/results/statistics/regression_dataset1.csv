@@ -1,0 +1,27 @@
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                 income   R-squared:                       0.484
+Model:                            OLS   Adj. R-squared:                 -1.064
+Method:                 Least Squares   F-statistic:                    0.3126
+Date:                Fri, 17 Oct 2025   Prob (F-statistic):              0.828
+Time:                        23:27:34   Log-Likelihood:               0.091515
+No. Observations:                   5   AIC:                             7.817
+Df Residuals:                       1   BIC:                             6.255
+Df Model:                           3                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P>|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+const         -0.2604      1.201     -0.217      0.864     -15.521      15.000
+age           -0.0104      0.469     -0.022      0.986      -5.964       5.943
+education      0.4896      0.885      0.553      0.678     -10.761      11.740
+gender_M       0.5104      0.885      0.576      0.667     -10.740      11.761
+==============================================================================
+Omnibus:                          nan   Durbin-Watson:                   2.500
+Prob(Omnibus):                    nan   Jarque-Bera (JB):                0.638
+Skew:                           0.000   Prob(JB):                        0.727
+Kurtosis:                       1.250   Cond. No.                         10.7
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
