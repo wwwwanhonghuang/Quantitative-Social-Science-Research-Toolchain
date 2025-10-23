@@ -1,0 +1,43 @@
+import pandas as pd
+from statsmodels.survey import survey_model as sm_survey
+
+# Example DataFrame
+df = pd.DataFrame({
+    'id': [1,2,3,4,5],
+    'y': [10,20,15,25,30],
+    'x1': [0,1,0,1,0],
+    'weight': [1.5, 1.0, 2.0, 1.0, 1.5],
+    'strata': [1,1,2,2,2],
+    'cluster': [101,101,102,102,103]
+})
+
+# Define SurveyDesign
+design = sm_survey.SurveyDesign(
+    clust=df['cluster'],
+    strata=df['strata'],
+    weights=df['weight']
+)
+
+
+# Weighted mean
+weighted_mean = design.mean(df['y'])
+print(weighted_mean)
+
+# Weighted total
+weighted_total = design.total(df['y'])
+print(weighted_total)
+
+# Weighted proportion for binary variable
+weighted_prop = design.mean(df['x1'])
+print(weighted_prop)
+
+from statsmodels.survey import survey_model as sm_survey_model
+
+# Weighted linear regression
+model = sm_survey_model.SurveyReg(
+    df['y'],               # dependent
+    df[['x1']],            # independent(s)
+    design                 # survey design
+).fit()
+
+print(model.summary())
