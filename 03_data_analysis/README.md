@@ -1,0 +1,2 @@
+Module Summary
+ModulePurposeKey MethodsWhen to Usevalidation.pyData quality & assumptionsOutliers, normality, VIF, homoscedasticityALWAYS FIRSTsurvey.pyScale development & reliabilityCronbach's α, EFA, item analysisSurvey/questionnaire datastatistics.pyDescriptive & regressionMean, SD, OLSBasic analysishypothesis.pyStatistical testst-test, ANOVA, χ², correlationGroup comparisonsmultilevel.pyNested/clustered dataRandom intercept/slope, growth curvesHierarchical datacausality/Causal inferenceDiD, IV, PSMTreatment effects
