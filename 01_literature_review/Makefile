@@ -20,7 +20,8 @@ export CURRENT_DATE
 all: project pdf
 
 # Create project from templates
-project: $(PROJECT_DIR)/main.tex $(PROJECT_DIR)/references.bib $(PROJECT_DIR)/sections/abstract.tex $(PROJECT_DIR)/sections/introduction.tex $(PROJECT_DIR)/sections/methodology.tex $(PROJECT_DIR)/sections/results.tex $(PROJECT_DIR)/sections/conclusion.tex $(PROJECT_DIR)/sections/discussion.tex $(PROJECT_DIR)/sections/appendix.tex $(PROJECT_DIR)/Makefile $(PROJECT_DIR)/README.md $(PROJECT_DIR)/summary.md
+
+project: $(PROJECT_DIR)/main.tex $(PROJECT_DIR)/references.bib $(PROJECT_DIR)/sections/abstract.tex $(PROJECT_DIR)/sections/introduction.tex $(PROJECT_DIR)/sections/methodology.tex $(PROJECT_DIR)/sections/results.tex $(PROJECT_DIR)/sections/conclusion.tex $(PROJECT_DIR)/sections/discussion.tex $(PROJECT_DIR)/sections/appendix.tex $(PROJECT_DIR)/Makefile $(PROJECT_DIR)/README.md $(PROJECT_DIR)/summary.md $(PROJECT_DIR)/literature_list.list
 	@echo "✓ Literature review project created: $(PROJECT_DIR)"
 
 # Create project directory structure
@@ -44,6 +45,11 @@ $(PROJECT_DIR)/references.bib: $(TEMPLATE_DIR)/references.bib.in $(PROJECT_DIR)/
 $(PROJECT_DIR)/summary.md: $(PROJECT_DIR)/.dir
 	@touch $@
 	@echo "✓ Created empty summary: $@"
+
+
+$(PROJECT_DIR)/literature_list.list: $(PROJECT_DIR)/.dir
+	@touch $@
+	@echo "✓ Created Literature List: $@"
 
 # Generate section files from individual templates
 $(PROJECT_DIR)/sections/abstract.tex: $(PARTIALS_DIR)/abstract.tex.in $(PROJECT_DIR)/.dir

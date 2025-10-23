@@ -1,0 +1,56 @@
+{
+  "test_group_means": {
+    "type": "ttest_ind",
+    "variable": "income",
+    "group": "treatment",
+    "alternative": "two-sided",
+    "equal_var": true,
+    "output_file": "ttest_income_by_treatment.json"
+  },
+  "test_before_after": {
+    "type": "ttest_paired",
+    "variable1": "score_before",
+    "variable2": "score_after",
+    "alternative": "two-sided",
+    "output_file": "ttest_paired_scores.json"
+  },
+  "test_multiple_groups": {
+    "type": "anova",
+    "variable": "satisfaction",
+    "group": "education_level",
+    "output_file": "anova_satisfaction.json"
+  },
+  "test_categorical_association": {
+    "type": "chi2",
+    "variable1": "gender",
+    "variable2": "employment_status",
+    "output_file": "chi2_gender_employment.json"
+  },
+  "test_nonparametric_groups": {
+    "type": "mannwhitney",
+    "variable": "response_time",
+    "group": "treatment",
+    "alternative": "two-sided",
+    "output_file": "mannwhitney_response_time.json"
+  },
+  "test_nonparametric_multiple": {
+    "type": "kruskal",
+    "variable": "experience_years",
+    "group": "job_category",
+    "output_file": "kruskal_experience.json"
+  },
+  "test_correlation_pearson": {
+    "type": "correlation",
+    "variable1": "age",
+    "variable2": "income",
+    "method": "pearson",
+    "output_file": "correlation_age_income.json"
+  },
+  "test_correlation_spearman": {
+    "type": "correlation",
+    "variable1": "rank1",
+    "variable2": "rank2",
+    "method": "spearman",
+    "output_file": "correlation_ranks.json"
+  }
+}
