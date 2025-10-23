@@ -1,0 +1,87 @@
+{
+  "random_intercept_students": {
+    "type": "random_intercept",
+    "dependent": "test_score",
+    "fixed_effects": ["student_ses", "gender", "prior_achievement"],
+    "group": "school_id",
+    "output_file": "random_intercept_students.json"
+  },
+  
+  "random_slope_ses": {
+    "type": "random_slope",
+    "dependent": "test_score",
+    "fixed_effects": ["student_ses", "school_quality", "teacher_experience"],
+    "random_slope": "student_ses",
+    "group": "school_id",
+    "output_file": "random_slope_ses.json"
+  },
+  
+  "random_slope_multiple": {
+    "type": "random_slope",
+    "dependent": "achievement",
+    "fixed_effects": ["ability", "motivation", "parental_involvement"],
+    "random_slope": ["ability", "motivation"],
+    "group": "classroom_id",
+    "output_file": "random_slope_multiple.json"
+  },
+  
+  "cross_classified_students": {
+    "type": "cross_classified",
+    "dependent": "achievement",
+    "fixed_effects": ["student_ability", "motivation"],
+    "groups": ["school_id", "neighborhood_id"],
+    "output_file": "cross_classified_students.json"
+  },
+  
+  "growth_curve_reading": {
+    "type": "growth_curve",
+    "dependent": "reading_score",
+    "time": "wave",
+    "fixed_effects": ["intervention", "baseline_score"],
+    "group": "student_id",
+    "time_as_random": true,
+    "output_file": "growth_curve_reading.json"
+  },
+  
+  "growth_curve_simple": {
+    "type": "growth_curve",
+    "dependent": "vocabulary",
+    "time": "grade",
+    "fixed_effects": [],
+    "group": "child_id",
+    "time_as_random": false,
+    "output_file": "growth_curve_vocabulary.json"
+  },
+  
+  "model_comparison": {
+    "type": "model_comparison",
+    "models": {
+      "null_model": {
+        "type": "random_intercept",
+        "dependent": "test_score",
+        "fixed_effects": [],
+        "group": "school_id"
+      },
+      "with_ses": {
+        "type": "random_intercept",
+        "dependent": "test_score",
+        "fixed_effects": ["student_ses"],
+        "group": "school_id"
+      },
+      "with_ses_gender": {
+        "type": "random_intercept",
+        "dependent": "test_score",
+        "fixed_effects": ["student_ses", "gender"],
+        "group": "school_id"
+      },
+      "random_slope_model": {
+        "type": "random_slope",
+        "dependent": "test_score",
+        "fixed_effects": ["student_ses", "gender"],
+        "random_slope": "student_ses",
+        "group": "school_id"
+      }
+    },
+    "output_file": "model_comparison.json"
+  }
+}

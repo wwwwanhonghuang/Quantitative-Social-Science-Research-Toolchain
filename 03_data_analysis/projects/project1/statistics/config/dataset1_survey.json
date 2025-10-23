@@ -1,0 +1,74 @@
+{
+  "reliability_job_satisfaction": {
+    "type": "reliability",
+    "scales": {
+      "job_satisfaction": ["js1", "js2", "js3", "js4", "js5"],
+      "organizational_commitment": ["oc1", "oc2", "oc3", "oc4", "oc5", "oc6"],
+      "burnout": ["bo1", "bo2", "bo3", "bo4", "bo5"]
+    },
+    "calculate_if_deleted": true,
+    "output_file": "reliability_analysis.json"
+  },
+  
+  "factor_analysis_wellbeing": {
+    "type": "factor_analysis",
+    "variables": ["wb1", "wb2", "wb3", "wb4", "wb5", "wb6", "wb7", "wb8", "wb9", "wb10"],
+    "n_factors": 3,
+    "rotation": "varimax",
+    "method": "minres",
+    "output_file": "factor_analysis_wellbeing.json"
+  },
+  
+  "factor_analysis_auto": {
+    "type": "factor_analysis",
+    "variables": ["item1", "item2", "item3", "item4", "item5", "item6"],
+    "rotation": "promax",
+    "method": "minres",
+    "output_file": "factor_analysis_auto.json"
+  },
+  
+  "item_analysis_satisfaction": {
+    "type": "item_analysis",
+    "items": ["js1", "js2", "js3", "js4", "js5"],
+    "scale_name": "Job Satisfaction",
+    "output_file": "item_analysis_satisfaction.json"
+  },
+  
+  "scale_scoring": {
+    "type": "scale_scoring",
+    "scales": {
+      "job_satisfaction": {
+        "items": ["js1", "js2", "js3", "js4", "js5"],
+        "method": "mean",
+        "reverse": ["js2", "js4"]
+      },
+      "burnout": {
+        "items": ["bo1", "bo2", "bo3", "bo4", "bo5"],
+        "method": "sum",
+        "reverse": ["bo2", "bo4"]
+      },
+      "engagement": {
+        "items": ["eg1", "eg2", "eg3", "eg4"],
+        "method": "mean",
+        "reverse": []
+      }
+    },
+    "output_to_dataset": true,
+    "scored_dataset_file": "dataset_with_scores.csv",
+    "output_file": "scale_scoring.json"
+  },
+  
+  "validity_satisfaction": {
+    "type": "validity",
+    "focal_scale": ["js1", "js2", "js3", "js4", "js5"],
+    "convergent_scales": {
+      "organizational_commitment": ["oc1", "oc2", "oc3", "oc4"],
+      "engagement": ["eg1", "eg2", "eg3", "eg4"]
+    },
+    "discriminant_scales": {
+      "neuroticism": ["n1", "n2", "n3"],
+      "extraversion": ["e1", "e2", "e3"]
+    },
+    "output_file": "validity_analysis.json"
+  }
+}

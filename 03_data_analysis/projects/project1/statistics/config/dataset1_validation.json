@@ -1,0 +1,44 @@
+{
+  "data_quality_check": {
+    "type": "quality_report",
+    "variables": ["income", "age", "education", "test_score", "gender", "treatment"],
+    "output_file": "quality_report.json"
+  },
+  
+  "outlier_detection_income": {
+    "type": "outlier_detection",
+    "variables": ["income", "test_score", "hours_worked"],
+    "methods": ["zscore", "iqr", "mahalanobis"],
+    "threshold": 3,
+    "output_file": "outliers_income.json"
+  },
+  
+  "normality_tests": {
+    "type": "normality",
+    "variables": ["income", "test_score", "age", "experience"],
+    "tests": ["shapiro", "anderson", "jarque_bera"],
+    "output_file": "normality_tests.json"
+  },
+  
+  "homoscedasticity_income": {
+    "type": "homoscedasticity",
+    "dependent": "income",
+    "independents": ["education", "experience", "age"],
+    "tests": ["breusch_pagan", "white"],
+    "output_file": "homoscedasticity_income.json"
+  },
+  
+  "multicollinearity_check": {
+    "type": "multicollinearity",
+    "variables": ["education", "experience", "age", "training_hours"],
+    "threshold": 10,
+    "output_file": "multicollinearity.json"
+  },
+  
+  "linearity_income_education": {
+    "type": "linearity",
+    "dependent": "income",
+    "independent": "education_years",
+    "output_file": "linearity_income_education.json"
+  }
+}
